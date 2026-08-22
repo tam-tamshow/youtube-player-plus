@@ -1,0 +1,14 @@
+{
+  "manifest_version": 3,
+  "name": "YouTube Player Plus",
+  "version": "0.1.0",
+  "description": "YouTubeの動画プレーヤーに10秒巻き戻し・10秒早送りボタンを追加します。",
+  "content_scripts": [
+    {
+      "matches": ["https://www.youtube.com/*"],
+      "js": ["src/core.js", "src/content-script.js"],
+      "css": ["src/content.css"],
+      "run_at": "document_idle"
+    }
+  ]
+}
