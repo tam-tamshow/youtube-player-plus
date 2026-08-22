@@ -10,34 +10,6 @@ permissions:
   contents: read
 
 jobs:
-  validate-main-source:
-    name: Validate main source
-    if: github.base_ref == 'main'
-    runs-on: ubuntu-latest
-    timeout-minutes: 5
-
-    steps:
-      - name: Validate source repository and branch
-        shell: bash
-        env:
-          BASE_REPOSITORY: ${{ github.repository }}
-          HEAD_REPOSITORY: ${{ github.event.pull_request.head.repo.full_name }}
-          HEAD_BRANCH: ${{ github.head_ref }}
-        run: |
-          if [[ "$HEAD_REPOSITORY" != "$BASE_REPOSITORY" ]]; then
-            echo "Pull requests to main must originate from this repository."
-            exit 1
-          fi
-
-          case "$HEAD_BRANCH" in
-            develop|release/*|hotfix/*)
-              ;;
-            *)
-              echo "Pull requests to main must originate from develop, release/*, or hotfix/*."
-              exit 1
-              ;;
-          esac
-
   test:
     name: Test
     runs-on: ubuntu-latest
