@@ -2,7 +2,18 @@
   position: absolute;
   inset: 0;
   z-index: 35;
+  visibility: hidden;
+  opacity: 0;
   pointer-events: none;
+  transition:
+    opacity 120ms ease,
+    visibility 0s linear 120ms;
+}
+
+.html5-video-player:hover > .ypp-player-controls {
+  visibility: visible;
+  opacity: 1;
+  transition-delay: 0s;
 }
 
 .ypp-player-controls__button {
@@ -75,6 +86,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .ypp-player-controls,
   .ypp-player-controls__button {
     transition: none;
   }
