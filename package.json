@@ -1,0 +1,11 @@
+{
+  "name": "youtube-player-plus",
+  "version": "0.1.0",
+  "private": true,
+  "description": "YouTubeの動画プレーヤーに再生操作を追加するChrome拡張",
+  "scripts": {
+    "lint": "node --check src/core.js && node --check src/content-script.js",
+    "test": "node --test",
+    "check": "npm run lint && npm test"
+  }
+}
