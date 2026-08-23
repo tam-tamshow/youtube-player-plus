@@ -1,0 +1,81 @@
+.ypp-player-controls {
+  position: absolute;
+  inset: 0;
+  z-index: 35;
+  pointer-events: none;
+}
+
+.ypp-player-controls__button {
+  position: absolute;
+  top: 50%;
+  display: grid;
+  width: clamp(56px, 6.5vw, 76px);
+  height: clamp(56px, 6.5vw, 76px);
+  padding: 6px;
+  border: 0;
+  border-radius: 50%;
+  color: rgb(255 255 255 / 92%);
+  background: transparent;
+  cursor: pointer;
+  pointer-events: auto;
+  place-items: center;
+  transform: translate(-50%, -50%);
+  transition:
+    color 120ms ease,
+    background-color 120ms ease,
+    transform 120ms ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.ypp-player-controls__button--seek-backward {
+  left: 37%;
+}
+
+.ypp-player-controls__button--seek-forward {
+  left: 63%;
+}
+
+.ypp-player-controls__button:hover {
+  color: #fff;
+  background: rgb(0 0 0 / 42%);
+  transform: translate(-50%, -50%) scale(1.08);
+}
+
+.ypp-player-controls__button:active {
+  background: rgb(0 0 0 / 58%);
+  transform: translate(-50%, -50%) scale(0.96);
+}
+
+.ypp-player-controls__button:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 3px;
+  background: rgb(0 0 0 / 42%);
+}
+
+.ypp-player-controls__icon {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  fill: currentcolor;
+}
+
+.html5-video-player.ad-showing > .ypp-player-controls {
+  display: none;
+}
+
+@media (max-width: 600px) {
+  .ypp-player-controls__button--seek-backward {
+    left: 32%;
+  }
+
+  .ypp-player-controls__button--seek-forward {
+    left: 68%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ypp-player-controls__button {
+    transition: none;
+  }
+}
