@@ -8,19 +8,15 @@
 
   let scheduledFrame = null;
 
-  const createSeekIcon = (seconds) => {
+  const createSeekIcon = (controlId) => {
     const icon = document.createElementNS("http://www.w3.org/2000/svg", "svg");
     icon.setAttribute("class", "ypp-player-controls__icon");
-    icon.setAttribute("viewBox", "0 0 64 64");
+    icon.setAttribute("viewBox", namespace.SEEK_ICON_VIEW_BOX);
     icon.setAttribute("aria-hidden", "true");
 
-    icon.innerHTML = `
-      <g class="ypp-player-controls__arrow">
-        <path d="m29 12-11 8 11 8" />
-        <path d="M19 20a22 22 0 1 0 23.5-5" />
-      </g>
-      <text x="32" y="43">${seconds}</text>
-    `;
+    const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+    path.setAttribute("d", namespace.SEEK_ICON_PATHS[controlId]);
+    icon.append(path);
 
     return icon;
   };
@@ -55,7 +51,7 @@
     button.dataset.controlId = definition.id;
     button.setAttribute("aria-label", definition.label);
     button.title = definition.label;
-    button.append(createSeekIcon(definition.seconds));
+    button.append(createSeekIcon(definition.id));
 
     button.addEventListener("pointerdown", stopYouTubeGesture);
     button.addEventListener("dblclick", stopYouTubeGesture);

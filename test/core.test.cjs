@@ -6,12 +6,24 @@ require("../src/core.js");
 
 const {
   DEFAULT_SETTINGS,
+  SEEK_ICON_PATHS,
+  SEEK_ICON_VIEW_BOX,
   calculateSeekTarget,
   createControlDefinitions,
 } = globalThis.YouTubePlayerPlus;
 
 test("MVPの既定秒数は10秒である", () => {
   assert.equal(DEFAULT_SETTINGS.seekSeconds, 10);
+});
+
+test("巻き戻し・早送りごとに独立した10秒アイコンを定義する", () => {
+  assert.equal(SEEK_ICON_VIEW_BOX, "0 -960 960 960");
+  assert.match(SEEK_ICON_PATHS["seek-backward"], /^M360-522/);
+  assert.match(SEEK_ICON_PATHS["seek-forward"], /^M480-80/);
+  assert.notEqual(
+    SEEK_ICON_PATHS["seek-backward"],
+    SEEK_ICON_PATHS["seek-forward"],
+  );
 });
 
 test("秒数に応じた巻き戻し・早送り操作を生成する", () => {
